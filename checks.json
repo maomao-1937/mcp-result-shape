@@ -1,0 +1,35 @@
+[
+  {
+    "name": "matching success",
+    "args": ["mcp_result_shape.py", "examples/shape.json", "examples/success.json"],
+    "exit": 0,
+    "report": {
+      "status": "ok", "is_error": false, "required_count": 2, "structured_content": "object",
+      "policies": {"success_only": "pass", "always": "pass"}, "missing": [], "wrong_type": []
+    }
+  },
+  {
+    "name": "error result with member mismatches",
+    "args": ["mcp_result_shape.py", "examples/shape.json", "examples/error-mismatch.json"],
+    "exit": 1,
+    "report": {
+      "status": "mismatch", "is_error": true, "required_count": 2, "structured_content": "object",
+      "policies": {"success_only": "skipped", "always": "fail"}, "missing": [2], "wrong_type": [1]
+    }
+  },
+  {
+    "name": "error result without structured content",
+    "args": ["mcp_result_shape.py", "examples/shape.json", "examples/error-no-content.json"],
+    "exit": 1,
+    "report": {
+      "status": "mismatch", "is_error": true, "required_count": 2, "structured_content": "missing",
+      "policies": {"success_only": "skipped", "always": "fail"}, "missing": [], "wrong_type": []
+    }
+  },
+  {
+    "name": "JSON-RPC envelope instead of result body",
+    "args": ["mcp_result_shape.py", "examples/shape.json", "examples/invalid-envelope.json"],
+    "exit": 2,
+    "report": {"status": "invalid", "reason": "invalid_result", "role": "result"}
+  }
+]

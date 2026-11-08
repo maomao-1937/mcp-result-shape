@@ -1,0 +1,6 @@
+{
+  "required": {
+    "sample_count": "integer",
+    "items": "array"
+  }
+}

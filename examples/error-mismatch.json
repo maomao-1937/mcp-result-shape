@@ -1,0 +1,7 @@
+{
+  "isError": true,
+  "structuredContent": {
+    "sample_count": false
+  },
+  "content": [{"type": "text", "text": "Synthetic tool error"}]
+}
